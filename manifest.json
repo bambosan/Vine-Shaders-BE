@@ -1,0 +1,23 @@
+{
+    "format_version": 2,
+    "metadata": {
+        "authors": [ "bambosan" ],
+        "url": "",
+        "license": "MIT License"
+    },
+    "header": {
+        "name": "vine shader",
+        "description": "a shaders for minecraft be",
+        "uuid": "57ff0f69-86d4-4fd6-87f2-ffb961ab7467",
+        "version": [0, 0, 1],
+        "min_engine_version": [1, 14, 1]
+    },
+    "modules": [
+        {
+            "description": "a shader for minecraft be",
+            "type": "resources",
+            "uuid": "39f8d86c-73bc-496e-bfea-e629f569d4c0",
+            "version": [0, 0, 1]
+        }
+    ]
+}
