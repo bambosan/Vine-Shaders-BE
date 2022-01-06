@@ -11,9 +11,9 @@ float sqr5(float x){ return x * x * x * x * x; }
 float hash(highp float n){ return fract(sin(n) * 43758.5453); }
 vec3 tl(vec3 c){ return pow(c, vec3(2.2)); }
 vec3 cc(vec3 c){
-	c = (c * 2.5) / (1.0 + c);
+	c = (c * 3.0) / (1.0 + c);
 	c = pow(c, vec3(0.454545));
-	return mix(vec3(length(c)), c, 1.2);
+	return mix(vec3(length(c)), c, 1.1);
 }
 vec3 csc(highp float hl){
 	vec3 zc = mix(FOG_COLOR.rgb, vec3(0.3, 0.5, 1.0), stre(length(FOG_COLOR.rgb) - rain));
