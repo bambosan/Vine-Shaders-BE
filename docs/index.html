@@ -1,144 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Vine Shaders BE</title>
-		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-		<script src="https://kit.fontawesome.com/1bdb927010.js"></script>
-		<link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet">
-		<style media="screen">
-			*{margin: 0; padding: 0}
-			a{color: #ABABAB; text-decoration: none}
-			a:hover{color: #C70500}
-			body{
-				font-family:Open Sans;
-				background: #000000;
-				color: #ABABAB;
-				-webkit-tap-highlight-color:transparent;
-				max-width: 800px;
-				margin: auto;
-			}
-			header{
-				margin: 15vh 0 0 15px;
-				text-align: left;
-				font-size: 3em
-			}
-			footer{
-				margin: 60px;
-				text-align: center;
-				font-size: 1em
-			}
-			p{
-				font-size: 1em;
-				text-align: justify;
-				line-height: 28px;
-				padding: 2px
-			}
-			ul{padding: 15px}
-			ul li{line-height: 28px}
-			.name{
-				margin: 20px 0 0 15px;
-				text-align: left;
-				font-size: 1.5em
-			}
-			.col{
-				height: auto;
-				margin: 15px;
-				border-radius: 5px
-			}
-			.hpack{
-				display: block;
-				font-size: 2em;
-				line-height: 30px;
-				text-align: left;
-				text-decoration: none
-			}
-			.infpack{font-size: 0.7em}
-			@media (max-width: 512px){
-				header{font-size: 2.3em}
-				.name{font-size: 1.3em}
-				.hpack{font-size: 1.8em}
-				.infpack{font-size: 0.6em}
-			}
-			.swiper-slide img{
-				display: block;
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-			}
-		</style>
-		<script>
-			async function load(url, sel){
-				const obj = await (await fetch(url)).json();
-				if(obj == 0){ return "not released"; } else {
-					switch(sel){
-						case 1: let uval = obj[0].assets[0].updated_at;
-							return uval.slice(0,10); break;
-						case 2: let fsval = obj[0].assets[0].size;
-							return (Math.round((fsval/1e6)*1000)/1000)+" MB"; break;
-						case 3: return obj[0].assets[0].download_count; break;
-					}
-				}
-			}
-			const vine = 'https://api.github.com/repos/bambosan/Vine-Shaders-BE/releases';
-			load(vine,1).then(val => { vine_lu.innerHTML = val});
-			load(vine,2).then(val => { vine_sf.innerHTML = val});
-			load(vine,3).then(val => { vine_td.innerHTML = val});
-		</script>
-	</head>
-	<body>
-		<div class="name"><a href="https://github.com/bambosan/Vine-Shaders-BE"><i class="fab fa-github"></i> bambosan repositories</a></div>
-		<header><b>Vine Shaders BE</b></header>
-		<div class="col">
-			<p class="infpack">
-				<i class="far fa-calendar-check"></i>&nbsp;<span id="vine_lu"></span>&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-file"></i>&nbsp;<span id="vine_sf"></span>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-download"></i>&nbsp;<span id="vine_td"></span>
-			</p>
-			<p>If you're tired of the color tones or the lighting of the torches or the sky being out of sync with the fog ?. Try this shader, this shader has several features such as tonemap, water waves, moving plants and leaves, sky, block lighting and fog. This shader is also very light so it is suitable for use when playing survival.</p><br>
-			<h2>Changelog</h2>
-			<p>coming soon..</p><br>
-			<h2>Screenshoot</h2>
-			<div class="swiper mySwiper">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>vine shaders be</title>
+  <script src="https://kit.fontawesome.com/1bdb927010.js"></script>
+  <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <style>
+    *{ margin: 0; padding: 0 }
+    body{
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        color: #dfdfdf;
+        background-color: #1f1f1f;
+        -webkit-tap-highlight-color: transparent;
+    }
+    a{
+        color: #dfdfdf;
+        text-decoration: none;
+        transition: all 0.3s
+    }
+    a:hover{ color: red; }
+    #contain{
+        margin: 0 auto;
+        padding: 0 0 20px;
+        width: 70vw;
+    }
+    #headers {
+      position: relative;
+      padding: 0;
+      background: linear-gradient(rgba(0.0, 0.0, 0.0, 0.5), rgba(0.0, 0.0, 0.0, 0.5)), url("./pic/ss1.jpg");
+      background-size: cover;
+      width: 100%;
+      height: 50vh;
+      box-shadow: 4px 4px 5px 1px black
+    }
+    #headers #tithead{
+      position: absolute;
+      top: 35vh;
+      left: 20px;
+      font-size: 3.5em;
+      text-shadow: 4px 4px 10px black
+    }
+    #headers #labout{ text-shadow: 2px 2px 5px black }
+    #headers #labout{ font-size: 14px }
+    #chead{
+        margin-bottom: 10px;
+        font-size: 1.8em;
+        text-shadow: 3px 3px 6px black
+    }
+    #box1{
+        padding: 10px;
+        line-height: 25px;
+        background-color: #1a1a1a;
+        box-shadow: 4px 4px 5px 1px black
+    }
+    #box1 a{ font-size: 1.5em;}
+    #box1 p{ font-size: 1em }
+    #box1 ul{ margin-left: 20px; font-size: 1em }
+	#box1 img{ image-rendering: pixelated; max-width: 100%;}
+    #box2{
+        padding: 10px;
+        width: 18vw;
+        line-height: 30px;
+        background-color: #1a1a1a;
+        box-shadow: 4px 4px 5px 1px black
+    }
+    #box2 a{ font-size: 1.2em }
+    footer{ padding: 80px 0 20px 0 }
+    footer p{ text-shadow: 3px 3px 4px black }
+    #box1 .swiper-slide img{
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover
+    }
+    @media (max-width: 850px){
+        #contain{
+            margin: 0 auto;
+            padding: 15px;
+            width: 90vw
+        }
+        #box2{ width: 25vw }
+    }
+    @media (max-width: 658px){
+        #contain{
+            margin: 0 auto;
+            padding: 15px;
+            width: 90vw
+        }
+        #headers { height: 30vh }
+        #headers #tithead{
+          position: absolute;
+          top: 21vh;
+          left: 16px;
+          font-size: 2.5em;
+          text-shadow: 4px 4px 10px black
+        }
+        #chead{ font-size: 1.5em }
+        #box1 a{ font-size: 1.2em }
+    }
+    @media (max-width: 500px){
+        #contain{
+            margin: 0 auto;
+            padding: 10px;
+            width: 95vw
+        }
+        #box2{ width: 35vw }
+    }
+  </style>
+  <script>
+    const loadd = async() => { return (await (await fetch("https://api.github.com/repos/bambosan/Vine-Shaders-BE/releases")).json()) }
+    loadd().then(res => {
+      uinfo.innerHTML = (res[0].assets[0].updated_at).slice(0,10);
+      fsize.innerHTML = (Math.round(((res[0].assets[0].size)/1e6)*1e3)/1e3)+" MB";
+      dcount.innerHTML = res[0].assets[0].download_count;
+    })
+  </script>
+</head>
+<body>
+  <div id="contain">
+    <div id="headers">
+      <p id="tithead">Vine Shaders BE</p>
+    </div><br>
+    <div id="box1">
+      <p>If you're tired of the color tones or the lighting of the torches or the sky being out of sync with the fog ?. Try this shader, this shader has several features such as tonemap, water waves, moving plants and leaves, sky, block lighting and fog. This shader is also very light so it is suitable for use when playing survival</p><br>
+      <div class="swiper mySwiper">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide"><img src="./pic/ss1.jpg" alt="vine shader"></div>
-					<div class="swiper-slide"><img src="./pic/ss2.jpg" alt="vine shader"></div>
-					<div class="swiper-slide"><img src="./pic/ss3.jpg" alt="vine shader"></div>
-					<div class="swiper-slide"><img src="./pic/ss4.jpg" alt="vine shader"></div>
-					<div class="swiper-slide"><img src="./pic/ss5.jpg" alt="vine shader"></div>
-					<div class="swiper-slide"><img src="./pic/ss6.jpg" alt="vine shader"></div>
+					<div class="swiper-slide"><img src="./pic/ss1.jpg" alt="vine-shaders-be"></div>
+					<div class="swiper-slide"><img src="./pic/ss2.jpg" alt="vine-shaders-be"></div>
+					<div class="swiper-slide"><img src="./pic/ss3.jpg" alt="vine-shaders-be"></div>
+					<div class="swiper-slide"><img src="./pic/ss4.jpg" alt="vine-shaders-be"></div>
+					<div class="swiper-slide"><img src="./pic/ss5.jpg" alt="vine-shaders-be"></div>
+					<div class="swiper-slide"><img src="./pic/ss6.jpg" alt="vine-shaders-be"></div>
 				</div>
-				<div class="swiper-button-next" style="color: #ABABAB"></div>
-				<div class="swiper-button-prev" style="color: #ABABAB"></div>
-			</div><br><br>
-			<h2>Note !</h2>
-			<ul>
-				<li>Don't reupload the shader file, if you want to share it, just use this github page link</li>
-				<li>Don't make this github page link or download link as a shortlink and activate some payment method on the shortlink</li>
-			</ul><br><br>
-			<h2>Download</h2><br>
-			<a href="https://github.com/bambosan/Vine-Shaders-BE/releases/download/v0.0.1/Vine-Shaders-BE.mcpack" style="padding: 15px; background: #141414">Vine Shaders BE 0.0.1</a>
-			<br><br><br><br>
-			<h2>Support Me</h2><br>
-			<a href="https://www.buymeacoffee.com/bambosan" style="padding: 15px; background: #141414">buy me a coffee</a><br><br><br>
-			<a href="https://saweria.co/bambosan" style="padding: 15px; background: #141414">saweria</a>
-		</div>
-		<br><br>
-		<footer>&copy; 2021 <a href="https://github.com/bambosan">bambosan</a></footer>
-		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-		<script>
-			var swiper = new Swiper(".mySwiper", {
-				spaceBetween: 10,
-				slidesPerView: 1,
-				loop: true,
-				autoplay: {
-					delay: 2000,
-					disableOnInteraction: true,
-				},
-				navigation: {
-					nextEl: ".swiper-button-next",
-					prevEl: ".swiper-button-prev",
-				},
-			});
-		</script>
-	</body>
+				<div class="swiper-button-next" style="color: #dfdfdf"></div>
+				<div class="swiper-button-prev" style="color: #dfdfdf"></div>
+			</div>
+    </div>
+    <br><br>
+    <p id="chead">Note</p>
+    <div id="box1">
+      <ul>
+		<li>This shader is not support minecraft bedrock windows 10 32bit (not renderdragon version)</li>
+		<li>Don't reupload the shader file, if you want to share it, just use this github page link</li>
+		<li>Don't make this github page link or download link as a shortlink and activate some payment method on the shortlink</li>
+	</ul>
+    </div>
+    <br><br>
+    <p id="chead">Download Shader</p>
+    <div id="box1">
+      <a href="https://github.com/bambosan/Vine-Shaders-BE/releases/download/v0.0.1/Vine-Shaders-BE.mcpack"><i class="fas fa-download"></i> Download</a>
+      <p><br>
+        <i class="far fa-calendar-check"></i>&nbsp;<span id="uinfo"></span>&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-file"></i>&nbsp;<span id="fsize"></span>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-download"></i>&nbsp;<span id="dcount"></span>
+      </p>
+    </div>
+    <br><br>
+    <p id="chead">See My Activity on</p>
+    <div id="box2">
+      <a href="https://github.com/bambosan" target="_blank"><i class="fab fa-github"></i> Github</a>
+      <br>
+      <a href="https://twitter.com/bambo_san" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+      <br>
+      <a href="https://www.youtube.com/channel/UCVhl5xGvRnlbIrb6K3CmCHA" target="_blank"><i class="fab fa-youtube" target="_blank"></i> YouTube</a>
+    </div>
+    <footer>
+      <p>Github page<br>by bambosan 2022</p>
+    </footer>
+  </div>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script>
+	  var swiper = new Swiper(".mySwiper", {
+      spaceBetween: 5,
+      centeredSlides: true,
+			loop: true,
+			autoplay: {
+				delay: 2000,
+				disableOnInteraction: true,
+			},
+			navigation: {
+				nextEl: ".swiper-button-next",
+				prevEl: ".swiper-button-prev",
+			},
+      breakpoints: {
+        700: {
+          spaceBetween: 20,
+          slidesPerView: 2,
+        }
+      }
+    });
+	</script>
+</body>
 </html>
