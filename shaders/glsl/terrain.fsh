@@ -67,7 +67,7 @@ lowp vec4 inColor = color;
 
 #ifndef ALWAYS_LIT
 	vec3 lm = texture2D(TEXTURE_1, vec2(0, uv1.y)).rgb;
-	diffuse.rgb *= lm + (vec3(1, 0.6, 0.3) * mix(uv1.x + sqr4(uv1.x), 0.0, lm.r));
+	diffuse.rgb *= lm + (vec3(1, 0.7, 0.5) * mix(uv1.x + sqr4(uv1.x), 0.0, lm.r));
 #endif
 
 #ifndef SEASONS
@@ -88,7 +88,7 @@ lowp vec4 inColor = color;
 	diffuse.rgb = tl(diffuse.rgb);
 
 #ifdef FOG
-	diffuse.rgb = mix(diffuse.rgb, sr(normalize(wpos)), fogr);
+	diffuse.rgb = mix(diffuse.rgb, tl(FOG_COLOR.rgb), fogr);
 #endif
 
 	diffuse.rgb = cc(diffuse.rgb);

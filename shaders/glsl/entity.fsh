@@ -171,7 +171,7 @@ testColor.a *= alphaTestMultiplier;
 #endif
 
 	color.rgb = tl(color.rgb);
-	color.rgb = mix(color.rgb, sr(normalize(wpos)), fogd);
+	color.rgb = mix(color.rgb, tl(FOG_COLOR.rgb), fogd);
 	color.rgb = cc(color.rgb);
 
 //color.rgb = vec3(TILE_LIGHT_COLOR.a);
