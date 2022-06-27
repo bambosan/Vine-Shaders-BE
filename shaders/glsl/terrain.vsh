@@ -46,7 +46,7 @@ void main(){
 #else
 	worldPos.xyz = (POSITION.xyz * CHUNK_ORIGIN_AND_SCALE.w) + CHUNK_ORIGIN_AND_SCALE.xyz;
 
-	// https://github.com/McbeEringi/esbe-3g/tree/master/ESBE_3G/shaders/glsl
+	// some stuff in here https://github.com/McbeEringi/esbe-3g/tree/master/ESBE_3G/shaders/glsl
 	POS3 ajp = fract(POSITION.xyz * 0.0625) * 16.0, frp = fract(POSITION.xyz);
 	highp float gwave = sin(TOTAL_REAL_WORLD_TIME * 4.0 + ajp.x + ajp.z + ajp.y);
 
@@ -56,7 +56,6 @@ void main(){
 	#ifdef ALPHA_TEST
 		if((COLOR.r != COLOR.g && COLOR.g != COLOR.b && frp.y != 0.015625) || (frp.y == 0.9375 && (frp.x == 0.0 || frp.z == 0.0))) worldPos.xyz += gwave * 0.03 * (1.-stre(length(worldPos.xyz) / FAR_CHUNKS_DISTANCE)) * TEXCOORD_1.y;
 	#endif
-
 	if(FOG_CONTROL.x == 0.0) worldPos.xyz += gwave * 0.05;
 	POS4 pos = WORLDVIEW * vec4(worldPos.xyz, 1.0);
 	pos = PROJ * pos;

@@ -15,3 +15,12 @@ vec3 cc(vec3 c){
 	c = pow(c, vec3(0.454545));
 	return mix(vec3(length(c)), c, 1.1);
 }
+vec3 csc(highp float hl){
+	vec3 zc = mix(FOG_COLOR.rgb, vec3(0.3, 0.5, 1.0), stre(length(FOG_COLOR.rgb) - rain));
+	vec3 hc = mix(sqrt(FOG_COLOR.rgb), FOG_COLOR.rgb, rain);
+	return mix(tl(zc), tl(hc), hl);
+}
+vec3 sr(highp vec3 np){
+	highp float hl = exp(-clamp(np.y, 0.0, 1.0) * 3.0) * 0.5;
+	return csc(hl);
+}

@@ -1,5 +1,10 @@
 {
-  "skyplane": {
+  "cubemap": {
+    "vertexShader": "shaders/cubemap.vsh",
+    "vrGeometryShader": "shaders/uv.geometry",
+    "fragmentShader": "shaders/cubemap.fsh"
+  },
+    "skyplane": {
     "vertexShader" : "shaders/sky.vsh",
     "vrGeometryShader" : "shaders/sky.geometry",
     "fragmentShader" : "shaders/sky.fsh"

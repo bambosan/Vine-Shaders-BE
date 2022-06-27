@@ -1,19 +1,13 @@
 // __multiversion__
-
 #include "vertexVersionSimple.h"
 #include "uniformWorldConstants.h"
-#include "uniformPerFrameConstants.h"
-#include "uniformShaderConstants.h"
 
 attribute mediump vec4 POSITION;
-attribute vec4 COLOR;
-
-varying vec4 color;
-
-const float fogNear = 0.3;
+varying highp float skyh;
 
 void main(){
-    gl_Position = WORLDVIEWPROJ * POSITION;
-    color = mix(CURRENT_COLOR, FOG_COLOR, COLOR.r);
-    color.rgb = pow(color.rgb, vec3(2.2));
+    mediump vec4 pos = POSITION;
+        pos.y -= length(POSITION.xyz) * 0.3;
+    gl_Position = WORLDVIEWPROJ * pos;
+    skyh = length(POSITION.xz);
 }
