@@ -4,7 +4,7 @@
         "name": "Vine Shaders RD Material Support",
         "description": "Additional resource pack for Vine RenderDragon materials that will enable glowing ore and cubemap shading",
         "uuid": "89cf6c27-9348-4faa-985e-119607297c45",
-        "version": [0, 1, 1],
+        "version": [1, 1, 1],
         "min_engine_version": [1, 18, 30]
     },
     "modules": [
@@ -12,7 +12,7 @@
             "description": "Additional resource pack for Vine RenderDragon materials that will enable glowing ore and cubemap shading",
             "type": "resources",
             "uuid": "45e742fe-4203-4798-8a69-8d06f6241d50",
-            "version": [0, 1, 1]
+            "version": [1, 1, 1]
         }
     ]
 }
