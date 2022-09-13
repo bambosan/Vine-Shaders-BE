@@ -1,23 +1,18 @@
 {
     "format_version": 2,
-    "metadata": {
-        "authors": [ "bambosan" ],
-        "url": "https://github.com/bambosan/vine-shader-be",
-        "license": "MIT License"
-    },
     "header": {
-        "name": "vine shader",
-        "description": "a shaders for minecraft be",
-        "uuid": "57ff0f69-86d4-4fd6-87f2-ffb961ab7467",
-        "version": [0, 0, 1],
-        "min_engine_version": [1, 14, 1]
+        "name": "Vine Shaders RD Material Support",
+        "description": "Additional resource pack for Vine RenderDragon materials that will enable glowing ore and cubemap shading",
+        "uuid": "89cf6c27-9348-4faa-985e-119607297c45",
+        "version": [0, 1, 1],
+        "min_engine_version": [1, 18, 30]
     },
     "modules": [
         {
-            "description": "a shader for minecraft be",
+            "description": "Additional resource pack for Vine RenderDragon materials that will enable glowing ore and cubemap shading",
             "type": "resources",
-            "uuid": "39f8d86c-73bc-496e-bfea-e629f569d4c0",
-            "version": [0, 0, 1]
+            "uuid": "45e742fe-4203-4798-8a69-8d06f6241d50",
+            "version": [0, 1, 1]
         }
     ]
 }
